@@ -18,20 +18,24 @@ class SpotifyRequests:
         oauth_client = OAuth2Client(token_endpoint=self.TOKEN_ENDPOINT, auth=self.AUTH_CREDENTIALS)
         return oauth_client.client_credentials(resource=self.REDIRECT_URI)
 
-    def get_album(self, id, market=None):
-        album_url = f'{self.BASE_URL}/albums/{id}'
+    def get_album(self, album_id, market=None):
+        album_url = f'{self.BASE_URL}/albums/{album_id}'
         query_params = {}
         if market is not None:
             query_params.update({"market": market})
-        response = requests.get(url=album_url, params=query_params, headers={"Authorization": f"Bearer {self.token}"})
+        response = requests.get(url=album_url,
+                                params=query_params,
+                                headers={"Authorization": f"Bearer {self.token}"})
         return response
 
     def get_several_albums(self, ids, market=None):
-        several_albums_url = f'{self.BASE_URL}/albums/'
+        several_albums_url = f'{self.BASE_URL}/albums'
         query_params = {"ids": ids}
         if market is not None:
             query_params.update({"market": market})
-            response = requests.get(url=several_albums_url, params=query_params, headers={"Authorization": f"Bearer {self.token}"})
+            response = requests.get(url=several_albums_url,
+                                    params=query_params,
+                                    headers={"Authorization": f"Bearer {self.token}"})
             return response
 
     def get_album_tracks(self, id, limit=None, offset=None, market=None):
@@ -43,18 +47,23 @@ class SpotifyRequests:
             query_params.update({"offset": offset})
         if market is not None:
             query_params.update({"market": market})
-        response = requests.get(url=album_tracks_url, params=query_params, headers={"Authorization": f'Bearer {self.token}'})
+        response = requests.get(url=album_tracks_url,
+                                params=query_params,
+                                headers={"Authorization": f'Bearer {self.token}'})
         return response
 
     def get_artist(self, id):
         artist_url = f'{self.BASE_URL}/artists/{id}'
-        response = requests.get(url=artist_url, headers={"Authorization": f'Bearer {self.token}'})
+        response = requests.get(url=artist_url,
+                                headers={"Authorization": f'Bearer {self.token}'})
         return response
 
     def get_several_artists(self, ids):
         url = f'{self.BASE_URL}/artists'
         query_params = {"ids": ids}
-        response = requests.get(url=url, params=query_params, headers={"Authorization": f'Bearer {self.token}'})
+        response = requests.get(url=url,
+                                params=query_params,
+                                headers={"Authorization": f'Bearer {self.token}'})
         return response
 
     def get_artists_albums(self, id, include_groups, market, limit, offset):
@@ -68,13 +77,17 @@ class SpotifyRequests:
             query_params.update({"limit": limit})
         if offset is not None:
             query_params.update({"offset": offset})
-        response = requests.get(url=url, params=query_params, headers={"Authorization": f"Bearer {self.token}"})
+        response = requests.get(url=url,
+                                params=query_params,
+                                headers={"Authorization": f"Bearer {self.token}"})
         return response
 
     def get_artists_top_tracks(self, id, market):
         url = f'{self.BASE_URL}/artists/{id}/top-tracks'
         query_params = {"market": market}
-        response = requests.get(url=url, params=query_params, headers={"Authorization": f'Bearer {self.token}'})
+        response = requests.get(url=url,
+                                params=query_params,
+                                headers={"Authorization": f'Bearer {self.token}'})
         return response
 
     def get_artists_related_artists(self, id):
@@ -83,8 +96,9 @@ class SpotifyRequests:
         return response
 
 
-# obj1 = SpotifyRequests()
+obj1 = SpotifyRequests()
 # token = obj1.token
 # print(token)
 
-
+# print(obj1.get_several_albums("382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc"))
+# print(obj1.get_album("4aawyAB9vmqN3uQ7FjRGTy"))
