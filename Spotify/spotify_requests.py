@@ -52,8 +52,8 @@ class SpotifyRequests:
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
 
-    def get_artist(self, id):
-        artist_url = f'{self.BASE_URL}/artists/{id}'
+    def get_artist(self, artist_id):
+        artist_url = f'{self.BASE_URL}/artists/{artist_id}'
         response = requests.get(url=artist_url,
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
