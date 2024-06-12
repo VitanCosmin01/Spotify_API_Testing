@@ -40,7 +40,7 @@ class TestGetArtist(unittest.TestCase):
         Verificam:
         - status code este 400
         - status code name este Bad Request
-        -
+        - verificam daca mesajul de eroare este cel correct
         :return:
         """
         expected_status_code = 400
