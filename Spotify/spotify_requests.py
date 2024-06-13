@@ -66,9 +66,9 @@ class SpotifyRequests:
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
 
-    def get_artists_albums(self, id, include_groups, market, limit, offset):
-        url = f'{self.BASE_URL}/artists/{id}/albums'
-        query_params = {"id": id}
+    def get_artists_albums(self, artist_id, include_groups, market, limit, offset):
+        url = f'{self.BASE_URL}/artists/{artist_id}/albums'
+        query_params = {"id": artist_id}
         if include_groups is not None:
             query_params.update({"include_groups": include_groups})
         if market is not None:
@@ -82,21 +82,23 @@ class SpotifyRequests:
                                 headers={"Authorization": f"Bearer {self.token}"})
         return response
 
-    def get_artists_top_tracks(self, id, market):
-        url = f'{self.BASE_URL}/artists/{id}/top-tracks'
+    def get_artists_top_tracks(self, artist_id, market):
+        # market nu este un parametru obligatoriu in documentatia API, dar se comporta ca si cum ar fi
+        url = f'{self.BASE_URL}/artists/{artist_id}/top-tracks'
         query_params = {"market": market}
         response = requests.get(url=url,
                                 params=query_params,
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
 
-    def get_artists_related_artists(self, id):
-        url = f'{self.BASE_URL}/artists/{id}/related-artists'
-        response = requests.get(url=f'{self.BASE_URL}/artists/{id}/related-artists')
+    def get_artists_related_artists(self, artist_id):
+        url = f'{self.BASE_URL}/artists/{artist_id}/related-artists'
+        response = requests.get(url=f'{self.BASE_URL}/artists/{artist_id}/related-artists')
         return response
 
 
 obj1 = SpotifyRequests()
+
 # token = obj1.token
 # print(token)
 
