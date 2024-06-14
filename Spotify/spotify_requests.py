@@ -66,20 +66,27 @@ class SpotifyRequests:
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
 
-    def get_artists_albums(self, artist_id, include_groups, market, limit, offset):
+    # def get_artists_albums(self, artist_id, include_groups, market, limit, offset):
+    #     url = f'{self.BASE_URL}/artists/{artist_id}/albums'
+    #     query_params = {"id": artist_id}
+    #     if include_groups is not None:
+    #         query_params.update({"include_groups": include_groups})
+    #     if market is not None:
+    #         query_params.update({"market": market})
+    #     if limit is not None:
+    #         query_params.update({"limit": limit})
+    #     if offset is not None:
+    #         query_params.update({"offset": offset})
+    #     response = requests.get(url=url,
+    #                             params=query_params,
+    #                             headers={"Authorization": f"Bearer {self.token}"})
+    #     return response
+
+    "O varianta in care folosesc ca parametru **kwargs"
+    def get_artists_albums(self, artist_id, **kwargs):
         url = f'{self.BASE_URL}/artists/{artist_id}/albums'
-        query_params = {"id": artist_id}
-        if include_groups is not None:
-            query_params.update({"include_groups": include_groups})
-        if market is not None:
-            query_params.update({"market": market})
-        if limit is not None:
-            query_params.update({"limit": limit})
-        if offset is not None:
-            query_params.update({"offset": offset})
-        response = requests.get(url=url,
-                                params=query_params,
-                                headers={"Authorization": f"Bearer {self.token}"})
+        query_params = {"artist_id": artist_id, **kwargs}
+        response = requests.get(url=url, params=query_params, headers={"Authorization": f"Bearer {self.token}"})
         return response
 
     def get_artists_top_tracks(self, artist_id, market):
@@ -93,7 +100,7 @@ class SpotifyRequests:
 
     def get_artists_related_artists(self, artist_id):
         url = f'{self.BASE_URL}/artists/{artist_id}/related-artists'
-        response = requests.get(url=f'{self.BASE_URL}/artists/{artist_id}/related-artists')
+        response = requests.get(url=url, headers={"Authorization": f'Bearer {self.token}'})
         return response
 
 

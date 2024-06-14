@@ -21,7 +21,7 @@ class TestGetArtistsAlbums(unittest.TestCase):
         expected_status_name = "OK"
         attributes = ["href", "limit", "next", "next", "offset", "previous", "total", "items"]
 
-        response = self.request_handler.get_artists_albums(id="0TnOYISbd1XYRBk9myaseg",
+        response = self.request_handler.get_artists_albums(artist_id="0TnOYISbd1XYRBk9myaseg",
                                                            include_groups="single,appears_on",
                                                            market="ES",
                                                            limit=10,
