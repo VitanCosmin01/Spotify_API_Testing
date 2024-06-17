@@ -14,6 +14,7 @@ class TestGetSeveralArtists(unittest.TestCase):
         Verificam:
         - status code este 200
         - status code name este OK
+        - performanta testului
         - verificam ca fiecare artist_id se afla in raspunsul json
         - verificam daca in raspuns avem tot atatea ids cate am furnizat
         :return:
@@ -24,6 +25,8 @@ class TestGetSeveralArtists(unittest.TestCase):
         expected_no_of_ids = 3
         start_time = timeit.default_timer()
         response = self.request_handler.get_several_artists(ids=artists_ids)
+        end_time = timeit.default_timer()
+        print(f"Timpul de execuție este {end_time - start_time} secunde.")
         self.assertEqual(expected_status_code, response.status_code)
         self.assertEqual(expected_status_name, response.reason)
         artists_ids_list = artists_ids.split(",")
@@ -31,6 +34,6 @@ class TestGetSeveralArtists(unittest.TestCase):
             if artist_id in response.json()["artists"]:
                 self.assertIn(artists_ids, response.json()["artists"])
         self.assertEqual(expected_no_of_ids, len(response.json()["artists"]))
-        end_time = timeit.default_timer()
-        print(f"Timpul de execuție este {end_time - start_time} secunde.")
+
+
 

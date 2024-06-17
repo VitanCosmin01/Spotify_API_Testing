@@ -38,18 +38,24 @@ class SpotifyRequests:
                                     headers={"Authorization": f"Bearer {self.token}"})
             return response
 
-    def get_album_tracks(self, id, limit=None, offset=None, market=None):
+    # def get_album_tracks(self, id, limit=None, offset=None, market=None):
+    #     album_tracks_url = f"{self.BASE_URL}/albums/{id}/tracks"
+    #     query_params = {}
+    #     if limit is not None:
+    #         query_params.update({"limit": limit})
+    #     if offset is not None:
+    #         query_params.update({"offset": offset})
+    #     if market is not None:
+    #         query_params.update({"market": market})
+    #     response = requests.get(url=album_tracks_url,
+    #                             params=query_params,
+    #                             headers={"Authorization": f'Bearer {self.token}'})
+    #     return response
+    def get_album_tracks(self, id, **kwargs):
         album_tracks_url = f"{self.BASE_URL}/albums/{id}/tracks"
-        query_params = {}
-        if limit is not None:
-            query_params.update({"limit": limit})
-        if offset is not None:
-            query_params.update({"offset": offset})
-        if market is not None:
-            query_params.update({"market": market})
-        response = requests.get(url=album_tracks_url,
-                                params=query_params,
-                                headers={"Authorization": f'Bearer {self.token}'})
+        query_params = {"id": id}
+        query_params.update(**kwargs)
+        response = requests.get(url=album_tracks_url, params=query_params, headers={"Authorization": f'Bearer {self.token}'})
         return response
 
     def get_artist(self, artist_id):

@@ -45,6 +45,8 @@ class TestGetArtistsTopTracks(unittest.TestCase):
         Verificam:
         - status code este 400
         - status code name este Bad Request
+        - prezenta cheii "error" in raspuns
+        - comparam mesajele de eroare daca corespund
         :return:
         """
         expected_status_code = 400
