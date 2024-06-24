@@ -2,7 +2,6 @@ import unittest
 import HtmlTestRunner
 
 
-
 from tests.test_get_album import TestGetAlbum
 from tests.test_get_album_track import TestGetAlbumTracks
 from tests.test_get_artist import TestGetArtist
