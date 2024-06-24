@@ -44,8 +44,7 @@ class TestGetArtistsRelatedArtists(unittest.TestCase):
                 if attribut in artist:
                     self.assertIn(attribut, artist)
 
-
-    def test_get_artists_related_artosts_with_invalid_id(self):
+    def test_get_artists_related_artists_with_invalid_id(self):
         """
         Verificam:
         - status code este 400
@@ -62,8 +61,8 @@ class TestGetArtistsRelatedArtists(unittest.TestCase):
         self.assertEqual(expected_status_code, response.status_code)
         self.assertEqual(expected_status_name, response.reason)
         self.assertIn(key_error, response.json())
-        # try:
-        #     self.assertEqual(expected_error_message, response.json()["error"]["message"])
-        # except AssertionError:
-        #     print(f' Mesajul API: {expected_error_message} este diferit de cel redat de cod: {response.json()["error"]["message"]}')
+        try:
+            self.assertEqual(expected_error_message, response.json()["error"]["message"])
+        except AssertionError:
+            print(f' Mesajul API: {expected_error_message} este diferit de cel redat de cod: {response.json()["error"]["message"]}')
 

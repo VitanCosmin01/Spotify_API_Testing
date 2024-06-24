@@ -51,8 +51,8 @@ class TestGetArtist(unittest.TestCase):
         self.assertEqual(expected_status_code, response.status_code)
         self.assertEqual(expected_status_name, response.reason)
         self.assertIn(searched_key, response.json())
-        # try:
-        #     self.assertEqual(error_message, response.json()["error"]["message"])
-        # except AssertionError:
-        #     print(f'Api error message: {error_message} este diferit de Pycharm error message: {response.json()["error"]["message"]}! ')
+        try:
+            self.assertEqual(error_message, response.json()["error"]["message"])
+        except AssertionError:
+            print(f'Api error message: {error_message} este diferit de Pycharm error message: {response.json()["error"]["message"]}! ')
         # print(response.json())

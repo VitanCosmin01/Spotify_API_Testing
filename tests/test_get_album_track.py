@@ -61,12 +61,12 @@ class TestGetAlbumTracks(unittest.TestCase):
         self.assertEqual(expected_status_code_with_limit_as_neg, response.status_code)
         self.assertIn(searched_key, response.json())
         print(response.text, response.json())
-        # try:
-        #     self.assertEqual(error_message, response.json()["error"]["message"])
-        # except AssertionError:
-        #     print(
-        #         f'Api error message: {error_message} este diferit de Pycharm error '
-        #         f'message: {response.json()["error"]["message"]}! ')
+        try:
+            self.assertEqual(error_message, response.json()["error"]["message"])
+        except AssertionError:
+            print(
+                f'Api error message: {error_message} este diferit de Pycharm error '
+                f'message: {response.json()["error"]["message"]}! ')
 
         # Mesajul de eroare primit in Pycharm este diferit de cel din Postman:
         # Bad limit, limit must be larger than 0
