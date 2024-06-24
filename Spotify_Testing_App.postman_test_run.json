@@ -1,0 +1,827 @@
+{
+	"id": "1989c68a-a0d4-4bab-bb7d-022b82927d93",
+	"name": "Spotify_Testing_App",
+	"timestamp": "2024-06-24T11:45:06.981Z",
+	"collection_id": "28413326-8a2172d8-20ee-453d-aeec-14d4f591d0e9",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 81,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-06-24T11:45:02.552Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "ec39d54f-b6b7-4eed-ad7f-6b247a7142a0",
+			"name": "Get Albums",
+			"url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy",
+			"time": 225,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name is OK": true,
+				"Response time is less than 5s": true,
+				"Album type is valide": true,
+				"Response text contains 'total_tracks'": true,
+				"List 'available_markets' contains all elements from ['RO', 'FR', 'PL']": true,
+				"id has the expected value": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name is OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 5s": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Album type is valide": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response text contains 'total_tracks'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"List 'available_markets' contains all elements from ['RO', 'FR', 'PL']": {
+					"pass": 1,
+					"fail": 0
+				},
+				"id has the expected value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name is OK": true,
+					"Response time is less than 5s": true,
+					"Album type is valide": true,
+					"Response text contains 'total_tracks'": true,
+					"List 'available_markets' contains all elements from ['RO', 'FR', 'PL']": true,
+					"id has the expected value": true
+				}
+			]
+		},
+		{
+			"id": "be2c56be-5eeb-4018-82ce-71b925c61f0a",
+			"name": "Get Albums when + market",
+			"url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy?market=ES",
+			"time": 159,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name has string": true,
+				"Album_type is included in list": true,
+				"Response time is less than 5s": true,
+				"Body matches string": true,
+				"Total_tracks is included in response body": true,
+				"id is the same as in link": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Album_type is included in list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 5s": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total_tracks is included in response body": {
+					"pass": 1,
+					"fail": 0
+				},
+				"id is the same as in link": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				159
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name has string": true,
+					"Album_type is included in list": true,
+					"Response time is less than 5s": true,
+					"Body matches string": true,
+					"Total_tracks is included in response body": true,
+					"id is the same as in link": true
+				}
+			]
+		},
+		{
+			"id": "7a46b9e1-ab11-42c3-9bc1-f35996f1a51a",
+			"name": "Get several albums",
+			"url": "https://api.spotify.com/v1/albums/?ids=382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+			"time": 177,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name is OK": true,
+				"Response body contains string 'albums'": true,
+				"Response time is less than 5s": true,
+				"Number of albums equal Ids": true,
+				"Your test name": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name is OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body contains string 'albums'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 5s": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Number of albums equal Ids": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				177
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name is OK": true,
+					"Response body contains string 'albums'": true,
+					"Response time is less than 5s": true,
+					"Number of albums equal Ids": true,
+					"Your test name": true
+				}
+			]
+		},
+		{
+			"id": "a463c20b-6ff3-4d3c-a574-57e02640967b",
+			"name": "Get Album Traks",
+			"url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks",
+			"time": 168,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name has string 'OK'": true,
+				"Response time is less than 1 sec": true,
+				"Check that 'total' is lower or equal than 'limit'": true,
+				"Check that 'limit' is 20": true,
+				"Your test name": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check that 'total' is lower or equal than 'limit'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check that 'limit' is 20": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				168
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name has string 'OK'": true,
+					"Response time is less than 1 sec": true,
+					"Check that 'total' is lower or equal than 'limit'": true,
+					"Check that 'limit' is 20": true,
+					"Your test name": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "4f642c49-0fe4-4f79-b57e-5370279da0ef",
+			"name": "Get Album Tracks When Limit is provided",
+			"url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks?limit=5",
+			"time": 210,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name has string 'OK'": true,
+				"Response time is less than 1 sec": true,
+				"Check that 'total' is lower or equal than 'limit'": true,
+				"Check that 'limit' is 20": true,
+				"Offset is equal 0": true,
+				"Total is lower than 20": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string 'OK'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check that 'total' is lower or equal than 'limit'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check that 'limit' is 20": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Offset is equal 0": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total is lower than 20": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				210
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name has string 'OK'": true,
+					"Response time is less than 1 sec": true,
+					"Check that 'total' is lower or equal than 'limit'": true,
+					"Check that 'limit' is 20": true,
+					"Offset is equal 0": true,
+					"Total is lower than 20": true
+				}
+			]
+		},
+		{
+			"id": "7b2ca9d2-bc69-4ee5-bc54-6e29ee7c0f23",
+			"name": "Get artists",
+			"url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
+			"time": 171,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Checking for coresponding id": true,
+				"Testing for the right value": true,
+				"Testing nomber of attributes": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking for coresponding id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Testing for the right value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Testing nomber of attributes": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				171
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Checking for coresponding id": true,
+					"Testing for the right value": true,
+					"Testing nomber of attributes": true
+				}
+			]
+		},
+		{
+			"id": "d83b33a4-7ffb-40d7-8c64-9c4bd0e6aef5",
+			"name": "Get artists not in db",
+			"url": "https://api.spotify.com/v1/artists/111111111111111111",
+			"time": 99,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Status code name has string 'Bad Request'": true,
+				"Body matches string 'error'": true,
+				"Your test name": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string 'Bad Request'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string 'error'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				99
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Status code name has string 'Bad Request'": true,
+					"Body matches string 'error'": true,
+					"Your test name": true
+				}
+			]
+		},
+		{
+			"id": "065cc0c3-1059-4436-b829-2fe1e06e7e56",
+			"name": "Get several artists",
+			"url": "https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+			"time": 406,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Followers total is a non-negative integer": true,
+				"Check total ids number": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Followers total is a non-negative integer": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check total ids number": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				406
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Followers total is a non-negative integer": true,
+					"Check total ids number": true
+				}
+			]
+		},
+		{
+			"id": "cdfd8684-d07a-4f94-b992-e49ef9577e75",
+			"name": "Get Artist's Albums",
+			"url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/albums?limit=10&market=ES&offset=5&include_groups=single,appears_on",
+			"time": 340,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response time is within an acceptable range of 1 sec": true,
+				"Response status code is 200": true,
+				"Status code name has string": true,
+				"Response body has the required fields": true,
+				"Your test name": true,
+				"Status code name should be a string": true,
+				"Items array is present and contains the expected number of elements": true
+			},
+			"testPassFailCounts": {
+				"Response time is within an acceptable range of 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body has the required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name should be a string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Items array is present and contains the expected number of elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				340
+			],
+			"allTests": [
+				{
+					"Response time is within an acceptable range of 1 sec": true,
+					"Response status code is 200": true,
+					"Status code name has string": true,
+					"Response body has the required fields": true,
+					"Your test name": true,
+					"Status code name should be a string": true,
+					"Items array is present and contains the expected number of elements": true
+				}
+			]
+		},
+		{
+			"id": "e4e550dc-c5c6-4000-82e6-73bdd64af683",
+			"name": "Get Artist's Top Tracks",
+			"url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?market=ES&limit=1",
+			"time": 248,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Body matches string 'tracks'": true,
+				"Album object has the correct structure": true,
+				"Validate the structure of the artists array": true,
+				"Popularity field is a non-negative integer": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string 'tracks'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Album object has the correct structure": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate the structure of the artists array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Popularity field is a non-negative integer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				248
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Body matches string 'tracks'": true,
+					"Album object has the correct structure": true,
+					"Validate the structure of the artists array": true,
+					"Popularity field is a non-negative integer": true
+				}
+			]
+		},
+		{
+			"id": "31672cfa-0eac-4144-9153-a76f6922c515",
+			"name": "Get Artist's Top Tracks With Invalid ID",
+			"url": "https://api.spotify.com/v1/artists/11111111111111111/top-tracks",
+			"time": 115,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Body matches string 'error'": true,
+				"Testing error message": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string 'error'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Testing error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				115
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Body matches string 'error'": true,
+					"Testing error message": true
+				}
+			]
+		},
+		{
+			"id": "56389159-c9b6-4c69-a9a4-97f291ba6971",
+			"name": "Get Artist's Related Artists",
+			"url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/related-artists",
+			"time": 291,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Body matches string 'artists'": true,
+				"Total has a numerical value": true,
+				"Followers has a dict value": true,
+				"Related artists has the correct structure": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string 'artists'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Total has a numerical value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Followers has a dict value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Related artists has the correct structure": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				291
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Body matches string 'artists'": true,
+					"Total has a numerical value": true,
+					"Followers has a dict value": true,
+					"Related artists has the correct structure": true
+				}
+			]
+		},
+		{
+			"id": "d48e069d-1e2f-4f34-b41e-8fd9c403bcf9",
+			"name": "Get Artist's Related Artists With invalid ID",
+			"url": "https://api.spotify.com/v1/artists/1111111111111111111/related-artists",
+			"time": 97,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Status code name has string": true,
+				"Response time is less than 1 sec": true,
+				"Body matches string 'artists'": true,
+				"Your test name": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 1 sec": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string 'artists'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				97
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Status code name has string": true,
+					"Response time is less than 1 sec": true,
+					"Body matches string 'artists'": true,
+					"Your test name": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2706,
+	"collection": {
+		"requests": [
+			{
+				"id": "ec39d54f-b6b7-4eed-ad7f-6b247a7142a0",
+				"method": "GET"
+			},
+			{
+				"id": "be2c56be-5eeb-4018-82ce-71b925c61f0a",
+				"method": "GET"
+			},
+			{
+				"id": "7a46b9e1-ab11-42c3-9bc1-f35996f1a51a",
+				"method": "GET"
+			},
+			{
+				"id": "a463c20b-6ff3-4d3c-a574-57e02640967b",
+				"method": "GET"
+			},
+			{
+				"id": "4f642c49-0fe4-4f79-b57e-5370279da0ef",
+				"method": "GET"
+			},
+			{
+				"id": "7b2ca9d2-bc69-4ee5-bc54-6e29ee7c0f23",
+				"method": "GET"
+			},
+			{
+				"id": "d83b33a4-7ffb-40d7-8c64-9c4bd0e6aef5",
+				"method": "GET"
+			},
+			{
+				"id": "065cc0c3-1059-4436-b829-2fe1e06e7e56",
+				"method": "GET"
+			},
+			{
+				"id": "cdfd8684-d07a-4f94-b992-e49ef9577e75",
+				"method": "GET"
+			},
+			{
+				"id": "e4e550dc-c5c6-4000-82e6-73bdd64af683",
+				"method": "GET"
+			},
+			{
+				"id": "31672cfa-0eac-4144-9153-a76f6922c515",
+				"method": "GET"
+			},
+			{
+				"id": "56389159-c9b6-4c69-a9a4-97f291ba6971",
+				"method": "GET"
+			},
+			{
+				"id": "d48e069d-1e2f-4f34-b41e-8fd9c403bcf9",
+				"method": "GET"
+			}
+		]
+	}
+}

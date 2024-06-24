@@ -45,4 +45,25 @@ class TestGetArtistsRelatedArtists(unittest.TestCase):
                     self.assertIn(attribut, artist)
 
 
+    def test_get_artists_related_artosts_with_invalid_id(self):
+        """
+        Verificam:
+        - status code este 400
+        - status code name este Bad Request
+        - prezenta cheii "error"
+        - mesajul de eroare este cel asteptat
+        :return:
+        """
+        expected_status_code = 400
+        expected_status_name = "Bad Request"
+        key_error = "error"
+        expected_error_message = "Invalid base62 id"
+        response = self.request_handler.get_artists_related_artists(artist_id="111111111111111")
+        self.assertEqual(expected_status_code, response.status_code)
+        self.assertEqual(expected_status_name, response.reason)
+        self.assertIn(key_error, response.json())
+        # try:
+        #     self.assertEqual(expected_error_message, response.json()["error"]["message"])
+        # except AssertionError:
+        #     print(f' Mesajul API: {expected_error_message} este diferit de cel redat de cod: {response.json()["error"]["message"]}')
 

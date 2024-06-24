@@ -32,6 +32,4 @@ class TestSuite(unittest.TestCase):
             report_title='TestReport',
             report_name='Spotify Test Result'
            )
-
         runner.run(tests_to_run)
-
