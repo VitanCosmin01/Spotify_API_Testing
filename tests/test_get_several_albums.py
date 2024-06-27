@@ -5,11 +5,12 @@ from Spotify.spotify_requests import SpotifyRequests
 
 class TestGetSeveralAlbums(unittest.TestCase):
     """
-    Testam suta GET /albums/<ids>
+    Testam ruta GET /albums
     """
     def setUp(self):
         self.request_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_several_albums(self):
         """
         Verificam:

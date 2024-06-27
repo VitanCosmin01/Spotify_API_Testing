@@ -1,0 +1,1220 @@
+{
+	"info": {
+		"_postman_id": "8a2172d8-20ee-453d-aeec-14d4f591d0e9",
+		"name": "Spotify_Testing_App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28413326"
+	},
+	"item": [
+		{
+			"name": "Albums",
+			"item": [
+				{
+					"name": "Get Albums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Verificam status codul ca este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Verificam ca mesajul status codului este OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Verificam performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"// Test 4: Verificam ca valoarea key \"Album type\" este in lista [\"album\", \"single\", \"compilation\"]\r",
+									"// Snippet: Response body: Contains string\r",
+									"pm.test(\"Album type is valide\", function () {\r",
+									"    var albums = [\"album\", \"single\", \"compilation\"]\r",
+									"    pm.expect(albums).to.include(pm.response.json().album_type);\r",
+									"});\r",
+									"\r",
+									"// Test 5: Verificam ca in raspunsul primit se regaseste cuvantul \"total_tracks\"\r",
+									"// Snippet: Response body: Contains string \r",
+									"pm.test(\"Response text contains 'total_tracks'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"total_tracks\");\r",
+									"});\r",
+									"\r",
+									"// Test 6: \r",
+									"// Snippet: Response body: Contains string \r",
+									"pm.test(\"List 'available_markets' contains all elements from ['RO', 'FR', 'PL']\", function () {\r",
+									"    var countries = [\"RO\", \"FR\", \"PL\"]\r",
+									"    for (const country of countries){\r",
+									"        pm.expect(pm.response.json().available_markets).to.include(country);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// Test 7: Verificam ca cheia \"id\" are valoarea \"4aawyAB9vmqN3uQ7FjRGTy\"\r",
+									"// Snippet: Response code: Json value check\r",
+									"pm.test(\"id has the expected value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(\"4aawyAB9vmqN3uQ7FjRGTy\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"4aawyAB9vmqN3uQ7FjRGTy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Albums when + market",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Testam status code este 200\r",
+									"// Snippet: Status code: Status code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// test 2: Verificam mesajul din status code\r",
+									"// Snippet: Status code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"// Test 3: Verificam ca valoarea cheii \"album_type\" se afla in lista [\"album\", \"single\", \"compilation\"]\r",
+									"// Snippet: Response body: Contains string\r",
+									"pm.test(\"Album_type is included in list\", function () {\r",
+									"    var list = [\"album\", \"single\", \"compilation\"]\r",
+									"    pm.expect(list).to.include(pm.response.json().album_type);\r",
+									"});\r",
+									"// Test 4: Performanta requestului\r",
+									"// Snippet: Response time is less than 200 ms\r",
+									"pm.test(\"Response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"// Test 5: Cheia available markets dispare din response\r",
+									"// Snippet: Response body: Contains string\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(\"available_markets\");\r",
+									"});\r",
+									"// Test 6: Verificam ca in response exista cuvantul \"total_tracks\"\r",
+									"// Snippet:Response body: Contains string\r",
+									"pm.test(\"Total_tracks is included in response body\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"total_tracks\");\r",
+									"});\r",
+									"// Test 7: Verificam ca cheia \"id\" are valoarea furnizata in link \"4aawyAB9vmqN3uQ7FjRGTy\"\r",
+									"// Snippet: Response body: JSON value check\r",
+									"pm.test(\"id is the same as in link\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(\"4aawyAB9vmqN3uQ7FjRGTy\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy?market=ES",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"4aawyAB9vmqN3uQ7FjRGTy"
+							],
+							"query": [
+								{
+									"key": "market",
+									"value": "ES"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get several albums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status code este 200\r",
+									"// Snippet:Status code:Cose is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2; Status code contine OK\r",
+									"// Snippet: Status code: Codename has string\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"// Test 3: Response body contine string-ul \"albums\"\r",
+									"// Snippet: esponse body contains string\r",
+									"pm.test(\"Response body contains string 'albums'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"albums\");\r",
+									"});\r",
+									" \r",
+									"// Test 4: Performanta request-ului\r",
+									"// Sinppet: Response time is less then 200\r",
+									"pm.test(\"Response time is less than 5s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"// Test 5: Numarul de albume din response este acelasi cu nr de ids furnizate in parametrul \"ids\"\r",
+									"// Snippet: Response body value check\r",
+									"pm.test(\"Number of albums equal Ids\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.albums.length).to.eql(3);\r",
+									"});\r",
+									"\r",
+									"// Test 6: Verificam ca sunt 15 piese in primul album\r",
+									"// Snippet: Response body; Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.albums[0].total_tracks).to.eql(15);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/albums/?ids=382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"albums",
+								""
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc"
+								},
+								{
+									"key": "market",
+									"value": "RO",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Album Traks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1 : Verificam ca status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2 : Verificam numele status code-ului este OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string 'OK'\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3 : Testam performanta requestului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4 : Verificam ca valoare cheii \"total\" este mai mica sau egala decat valoarea cheii \"limit\" \r",
+									"// Snippet : Response body : JSON value check\r",
+									"pm.test(\"Check that 'total' is lower or equal than 'limit'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.total).to.below(jsonData.limit);\r",
+									"});\r",
+									"\r",
+									"// Test 5 : Verificam ca avem cheia \"limit\" si valoarea acesteia este 20\r",
+									"// Snippet :  Response body : JSON value check\r",
+									"\r",
+									"pm.test(\"Check that 'limit' is 20\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.limit).to.eql(20);\r",
+									"});\r",
+									"\r",
+									"// Test 6 : Verificam ca avem cheia \"offset\" cu valoarea 0\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"offset\"]).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"// Test 7 : Verificam ca lista items contine 20 de cantece sau mai putin\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"total\"]).to.below(20);\r",
+									"});\r",
+									"\r",
+									"// Test 8: Verificam ca response body contine stringul tracks\r",
+									"// Snippet: Response body: Json contains string\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"track\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"4aawyAB9vmqN3uQ7FjRGTy",
+								"tracks"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Album Tracks When Limit is provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1 : Verificam ca status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2 : Verificam numele status code-ului este OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string 'OK'\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3 : Testam performanta requestului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4 : Verificam ca valoare cheii \"total\" este mai mica sau egala decat valoarea cheii \"limit\" \r",
+									"// Snippet : Response body : JSON value check\r",
+									"pm.test(\"Check that 'total' is lower or equal than 'limit'\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.limit).to.below(jsonData.total);\r",
+									"});\r",
+									"\r",
+									"// Test 5 : Verificam ca avem cheia \"limit\" si valoarea acesteia este 5\r",
+									"// Snippet :  Response body : JSON value check\r",
+									"pm.test(\"Check that 'limit' is 20\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.limit).to.eql(5);\r",
+									"});\r",
+									"\r",
+									"// Test 6 : Verificam ca avem cheia \"offset\" cu valoarea 0\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Offset is equal 0\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"offset\"]).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"// Test 7 : Verificam ca lista items contine 20 de cantece sau mai putin\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Total is lower than 20\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"total\"]).to.below(20);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks?limit=5",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"albums",
+								"4aawyAB9vmqN3uQ7FjRGTy",
+								"tracks"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "market",
+									"value": "ES",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artists",
+			"item": [
+				{
+					"name": "Get artists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Verificam ca in mesajul status code-ului se afla si stringul OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Performanta request-ului\r",
+									"// Snipet: Response time is less than 200\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4: Verificam ca valoarea id-ului este aceeasi cu cea din link\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Checking for coresponding id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(\"0TnOYISbd1XYRBk9myaseg\");\r",
+									"});\r",
+									"// Test 5: Verificam ca atributul \"type\" are valoare \"artist\"\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Testing for the right value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"artist\");\r",
+									"});\r",
+									"\r",
+									"// Test 6: Verficam respunsul ca are 10 atribute\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Testing nomber of attributes\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(Object.keys(jsonData).length).to.eql(10);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"0TnOYISbd1XYRBk9myaseg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get artists not in db",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test : Status code este 400\r",
+									"// Snippet: Status code; Code is 200\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Status code cuprinde string-ul \"Bad Request\"\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string 'Bad Request'\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Verificam prezenta cheii 'error'\r",
+									"// Snippet: Response body contains string\r",
+									"pm.test(\"Body matches string 'error'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"// Test 4: Verificam mesajul de eroare\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.error.message).to.eql(\"Invalid base62 id\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/111111111111111111",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"111111111111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get several artists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Verificam status code este 200\r",
+									"// Snippet: Status code : Code is 200\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Status code cuprinde stringul OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Testem performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4: Testam ca atributul \"total\" este un numar si e mai mare de 0\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Followers total is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.artists[0].followers.total).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"// Test 5: Testam daca s-au returnat tot atea ids cate s-au cerut\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Check total ids number\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"artists\"].length).to.eql(3);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist's Albums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Performanta testului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is within an acceptable range of 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"// Test 3: Status code cuprinde stringul \"OK\"\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 4: Verificam ca respunsul cuprinde atributele corecte\r",
+									"// Snippet: Json value check\r",
+									"pm.test(\"Response body has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    // pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('href');\r",
+									"    pm.expect(responseData).to.have.property('limit');\r",
+									"    pm.expect(responseData).to.have.property('next');\r",
+									"    pm.expect(responseData).to.have.property('offset');\r",
+									"    pm.expect(responseData).to.have.property('previous');\r",
+									"    pm.expect(responseData).to.have.property('total');\r",
+									"    pm.expect(responseData).to.have.property('items');\r",
+									"});\r",
+									"\r",
+									"// Test 5: Verificam ca lungimea de items este aceeasi cu limita setata\r",
+									"// SNippet: REsponse body: Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[\"items\"].length).to.eql(10);\r",
+									"    pm.expect(jsonData[\"limit\"]).to.eql(10);\r",
+									"    pm.expect(jsonData[\"offset\"]).to.eql(5);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code name should be a string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.href).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Items array is present and contains the expected number of elements\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.items).to.exist.and.to.be.an('array').with.lengthOf(10);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/albums?limit=10&market=ES&offset=5&include_groups=single,appears_on",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"0TnOYISbd1XYRBk9myaseg",
+								"albums"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "market",
+									"value": "ES"
+								},
+								{
+									"key": "offset",
+									"value": "5"
+								},
+								{
+									"key": "include_groups",
+									"value": "single,appears_on"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist's Top Tracks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Status code: Code has string\r",
+									"// Snippet: Status code: Code has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms \r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4: Existenta cheii \"tracks\"\r",
+									"// Snippe: Response body: Contains string\r",
+									"pm.test(\"Body matches string 'tracks'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"tracks\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Album object has the correct structure\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.tracks).to.be.an('array');\r",
+									"    responseData.tracks.forEach(function(track) {\r",
+									"        pm.expect(track.album).to.be.an('object');\r",
+									"        pm.expect(track.album).to.have.property('album_type');\r",
+									"        pm.expect(track.album.artists).to.be.an('array');\r",
+									"        pm.expect(track.album.external_urls).to.be.an('object');\r",
+									"        pm.expect(track.album.images).to.be.an('array');\r",
+									"        pm.expect(track.album.is_playable).to.be.a('boolean');\r",
+									"        pm.expect(track.album.name).to.be.a('string');\r",
+									"        pm.expect(track.album.release_date).to.be.a('string');\r",
+									"        pm.expect(track.album.release_date_precision).to.be.a('string');\r",
+									"        pm.expect(track.album.total_tracks).to.be.a('number');\r",
+									"        pm.expect(track.album.type).to.be.a('string');\r",
+									"        pm.expect(track.album.uri).to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the artists array\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.tracks).to.be.an('array');\r",
+									"    responseData.tracks.forEach(function(track) {\r",
+									"        pm.expect(track.artists).to.be.an('array');\r",
+									"        track.artists.forEach(function(artist) {\r",
+									"            pm.expect(artist).to.be.an('object');\r",
+									"            pm.expect(artist.external_urls).to.be.an('object');\r",
+									"            pm.expect(artist.href).to.be.a('string');\r",
+									"            pm.expect(artist.id).to.be.a('string');\r",
+									"            pm.expect(artist.name).to.be.a('string');\r",
+									"            pm.expect(artist.type).to.be.a('string');\r",
+									"            pm.expect(artist.uri).to.be.a('string');\r",
+									"        });\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Popularity field is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData.tracks).to.be.an('array');\r",
+									"  \r",
+									"  responseData.tracks.forEach(function(track) {\r",
+									"    pm.expect(track.popularity).to.be.a('number').and.to.satisfy((popularity) => popularity >= 0, \"Popularity should be a non-negative integer\");\r",
+									"  });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks?market=ES&limit=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"0TnOYISbd1XYRBk9myaseg",
+								"top-tracks"
+							],
+							"query": [
+								{
+									"key": "market",
+									"value": "ES"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist's Top Tracks With Invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status code este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Status code: Code has string\r",
+									"// Snippet: Status code: Code has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms \r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"// Test 4: Verificam daca in raspuns avem cheia error\r",
+									"// Snippet: Response body: Contains string\r",
+									"pm.test(\"Body matches string 'error'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"// Test 5: Verifia, mesajul de eroare\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Testing error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.error.message).to.eql(\"Invalid base62 id\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/11111111111111111/top-tracks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"11111111111111111",
+								"top-tracks"
+							],
+							"query": [
+								{
+									"key": "market",
+									"value": "ES",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist's Related Artists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Raspunsul este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Raspunsul contine string-ul OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"// Test 4: Prezenta cheii'artists'\r",
+									"// Snippet: Response body: contains string\r",
+									"pm.test(\"Body matches string 'artists'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"artists\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json(); // Define 'jsonData' before using it in the tests\r",
+									"\r",
+									"// Test 5: Cheia 'total este de tip numeric\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Total has a numerical value\", function () {\r",
+									"    pm.expect(jsonData[\"artists\"][0][\"followers\"][\"total\"]).to.exist.and.to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									"// Test 6: cheia 'followers' este de tip dictionar\r",
+									"// Snippet: Response body: Json value check\r",
+									"pm.test(\"Followers has a dict value\", function () {\r",
+									"    pm.expect(jsonData.artists[0].followers).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// Test 7: verificam faptul ca fiecare artist este descris de atributele corecte\r",
+									"// Snippet: Response body: json value check\r",
+									"pm.test(\"Related artists has the correct structure\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.artists).to.be.an('array');\r",
+									"    responseData.artists.forEach(function(artist) {\r",
+									"        pm.expect(artist).to.have.property('external_urls');\r",
+									"        pm.expect(artist).to.have.property('followers');\r",
+									"        pm.expect(artist).to.have.property('genres');\r",
+									"        pm.expect(artist).to.have.property('href');\r",
+									"        pm.expect(artist).to.have.property('id');\r",
+									"        pm.expect(artist).to.have.property('images');\r",
+									"        pm.expect(artist).to.have.property('name');\r",
+									"        pm.expect(artist).to.have.property('popularity');\r",
+									"        pm.expect(artist).to.have.property('type');\r",
+									"        pm.expect(artist).to.have.property('uri');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/related-artists",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"0TnOYISbd1XYRBk9myaseg",
+								"related-artists"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist's Related Artists With invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Raspunsul este 200\r",
+									"// Snippet: Status code: Code is 200\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Raspunsul contine string-ul OK\r",
+									"// Snippet: Status code: Code name has string\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Performanta request-ului\r",
+									"// Snippet: Response time is less than 200ms\r",
+									"pm.test(\"Response time is less than 1 sec\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"// Test 4: Prezenta cheii'error'\r",
+									"// Snippet: Response body: contains string\r",
+									"pm.test(\"Body matches string 'artists'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"// Test 5: Verificam ca mesajul de eroare este cel asteptat\r",
+									"// Snippet: Respose body: Json value check\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.error[\"message\"]).to.eql(\"Invalid base62 id\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.spotify.com/v1/artists/1111111111111111111/related-artists",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"artists",
+								"1111111111111111111",
+								"related-artists"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://accounts.spotify.com/api/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://accounts.spotify.com/authorize",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "http://localhost:3000",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "client_id",
+			"value": "ed3c2eb5e6cf4694a49af1b6554bea9a",
+			"type": "string"
+		},
+		{
+			"key": "client_secret",
+			"value": "5ade79a0421843b484b0c9de0af0b496",
+			"type": "string"
+		}
+	]
+}

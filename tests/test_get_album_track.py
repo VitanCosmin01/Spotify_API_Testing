@@ -4,10 +4,13 @@ from Spotify.spotify_requests import SpotifyRequests
 
 
 class TestGetAlbumTracks(unittest.TestCase):
-
+    """
+    Testam ruta GET /album/<id>/tracks
+    """
     def setUp(self):
         self.request_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_album_tracks(self):
         """
         Verificam:
@@ -31,6 +34,7 @@ class TestGetAlbumTracks(unittest.TestCase):
         self.assertIn(expected_key, response.text)
         self.assertEqual(expected_value, response.json()["items"][0]["type"])
 
+    # @unittest.skip
     def test_get_album_tracks_with_limit(self):
         """
         Verificam:
@@ -46,6 +50,7 @@ class TestGetAlbumTracks(unittest.TestCase):
         self.assertEqual(expected_status_code, response.status_code)
         self.assertEqual(expected_length, len(response.json()["items"]))
 
+    # @unittest.skip
     def test_get_album_tracks_with_neg_limit(self):
         """
         Verificam:

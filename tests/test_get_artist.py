@@ -4,10 +4,13 @@ from Spotify.spotify_requests import SpotifyRequests
 
 
 class TestGetArtist(unittest.TestCase):
-
+    """
+    Testam ruta GET /artists/<id>
+    """
     def setUp(self):
         self.requests_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_artist(self):
         """
         Verificam:
@@ -35,6 +38,7 @@ class TestGetArtist(unittest.TestCase):
             if atribut in response.json():
                 self.assertIn(atribut, response.json())
 
+    # @unittest.skip
     def test_get_artist_not_in_db(self):
         """
         Verificam:

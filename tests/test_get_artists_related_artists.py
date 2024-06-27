@@ -5,10 +5,13 @@ from Spotify.spotify_requests import SpotifyRequests
 
 
 class TestGetArtistsRelatedArtists(unittest.TestCase):
-
+    """
+    Testam ruta GET /artists/<id>/related-artists
+    """
     def setUp(self):
         self.request_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_artists_related_artists(self):
         """
         Verificam:
@@ -44,6 +47,7 @@ class TestGetArtistsRelatedArtists(unittest.TestCase):
                 if attribut in artist:
                     self.assertIn(attribut, artist)
 
+    # @unittest.skip
     def test_get_artists_related_artists_with_invalid_id(self):
         """
         Verificam:

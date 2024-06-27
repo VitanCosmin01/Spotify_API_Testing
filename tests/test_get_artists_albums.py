@@ -4,10 +4,13 @@ from Spotify.spotify_requests import SpotifyRequests
 
 
 class TestGetArtistsAlbums(unittest.TestCase):
-
+    """
+    Testam ruta GET /artists/<id>/albums
+    """
     def setUp(self):
         self.request_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_artists_albums(self):
         """
         Verificam:

@@ -4,11 +4,14 @@ from Spotify.spotify_requests import SpotifyRequests
 
 
 class TestGetArtistsTopTracks(unittest.TestCase):
-
+    """
+    Testam ruta GET /artists/<id>/top-tracks
+    """
     def setUp(self):
         # instantiem un obiect din clasa SpotifyRequests si o setam pe self
         self.requests_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_artists_top_tracks(self):
         """
         Verificam:
@@ -40,6 +43,7 @@ class TestGetArtistsTopTracks(unittest.TestCase):
         self.assertIsInstance(response.json()["tracks"][0]["is_playable"], bool)
         self.assertIn(searched_key, response.json())
 
+    # @unittest.skip
     def test_get_artists_top_tracks_with_invalid_id(self):
         """
         Verificam:

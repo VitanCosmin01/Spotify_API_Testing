@@ -11,6 +11,7 @@ class TestGetAlbum(unittest.TestCase):
     def setUp(self):
         self.requests_handler = SpotifyRequests()
 
+    # @unittest.skip
     def test_get_album(self):
         """
         Verificam:
@@ -34,6 +35,7 @@ class TestGetAlbum(unittest.TestCase):
                 # print(countrie, available_markets)
                 self.assertIn(countrie, available_markets)
 
+    # @unittest.skip
     def test_get_album_when_market_is_provided(self):
         """
         Verificam:
