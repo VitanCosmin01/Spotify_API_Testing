@@ -18,6 +18,7 @@ class SpotifyRequests:
         oauth_client = OAuth2Client(token_endpoint=self.TOKEN_ENDPOINT, auth=self.AUTH_CREDENTIALS)
         return oauth_client.client_credentials(resource=self.REDIRECT_URI)
 
+    # se implementeaza ENDPOINT-ul https://api.spotify.com/v1/albums/{id}
     def get_album(self, album_id, market=None):
         album_url = f'{self.BASE_URL}/albums/{album_id}'
         query_params = {}
@@ -28,6 +29,8 @@ class SpotifyRequests:
                                 headers={"Authorization": f"Bearer {self.token}"})
         return response
 
+    # ENDPOINT
+    # https://api.spotify.com/v1/albums
     def get_several_albums(self, ids, market=None):
         several_albums_url = f'{self.BASE_URL}/albums'
         query_params = {"ids": ids}
@@ -51,6 +54,9 @@ class SpotifyRequests:
     #                             params=query_params,
     #                             headers={"Authorization": f'Bearer {self.token}'})
     #     return response
+
+    # ENDPOINT
+    # https: // api.spotify.com / v1 / albums / {id} / tracks
     def get_album_tracks(self, id, **kwargs):
         album_tracks_url = f"{self.BASE_URL}/albums/{id}/tracks"
         query_params = {"id": id}
@@ -58,12 +64,15 @@ class SpotifyRequests:
         response = requests.get(url=album_tracks_url, params=query_params, headers={"Authorization": f'Bearer {self.token}'})
         return response
 
+    # ENDPOINT
+    # https: // api.spotify.com / v1 / artists / {id}
     def get_artist(self, artist_id):
         artist_url = f'{self.BASE_URL}/artists/{artist_id}'
         response = requests.get(url=artist_url,
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
-
+    # ENDPOINT
+    # https://api.spotify.com/v1/artists
     def get_several_artists(self, ids):
         url = f'{self.BASE_URL}/artists'
         query_params = {"ids": ids}
@@ -87,7 +96,8 @@ class SpotifyRequests:
     #                             params=query_params,
     #                             headers={"Authorization": f"Bearer {self.token}"})
     #     return response
-
+    # ENDPOINT
+    # https://api.spotify.com/v1/artists/{id}/albums
     "O varianta in care folosesc ca parametru **kwargs"
     def get_artists_albums(self, artist_id, **kwargs):
         url = f'{self.BASE_URL}/artists/{artist_id}/albums'
@@ -95,6 +105,8 @@ class SpotifyRequests:
         response = requests.get(url=url, params=query_params, headers={"Authorization": f"Bearer {self.token}"})
         return response
 
+    # ENDPOINT
+    # https://api.spotify.com/v1/artists/{id}/top-tracks
     def get_artists_top_tracks(self, artist_id, market):
         # market nu este un parametru obligatoriu in documentatia API, dar se comporta ca si cum ar fi
         url = f'{self.BASE_URL}/artists/{artist_id}/top-tracks'
@@ -104,6 +116,8 @@ class SpotifyRequests:
                                 headers={"Authorization": f'Bearer {self.token}'})
         return response
 
+    # ENDPOINT
+    # https://api.spotify.com/v1/artists/{id}/related-artists
     def get_artists_related_artists(self, artist_id):
         url = f'{self.BASE_URL}/artists/{artist_id}/related-artists'
         response = requests.get(url=url, headers={"Authorization": f'Bearer {self.token}'})
