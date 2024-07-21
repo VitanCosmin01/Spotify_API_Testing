@@ -39,10 +39,10 @@ class TestGetAlbum(unittest.TestCase):
     def test_get_album_when_market_is_provided(self):
         """
         Verificam:
-        - status code eeste 200
-        - Verificam ca response body contine cheia "album_type"
+        - status code este 200
+        - Verificam daca response body contine cheia "album_type"
         - Cheia available markets dispare din response
-        - Verificam ca cheia "id" are valoarea furnizata in link "4aawyAB9vmqN3uQ7FjRGTy"
+        - Verificam daca cheia "id" are valoarea furnizata in link "4aawyAB9vmqN3uQ7FjRGTy"
         :return:
         """
         expected_status_code = 200
